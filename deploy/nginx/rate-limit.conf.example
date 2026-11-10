@@ -1,0 +1,17 @@
+# TicketRush Nginx Rate Limiting configuration example
+#
+# Place this directive inside nginx.conf's http {} block:
+#
+# limit_req_zone $binary_remote_addr zone=ticket_api:10m rate=5r/s;
+#
+# Place these directives inside the existing server's
+# location /api/ {} block:
+#
+# limit_req zone=ticket_api burst=10 nodelay;
+# limit_req_status 429;
+#
+# Existing API reverse proxy:
+# proxy_pass http://127.0.0.1:8001;
+#
+# This file is a reference example, not a standalone
+# Nginx configuration file.
