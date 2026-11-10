@@ -1,0 +1,36 @@
+name: ticketrush
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./database:/app/database
+    environment:
+      PYTHONUNBUFFERED: "1"
+    expose:
+      - "8001"
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/api/health', timeout=3)"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  web:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "${TICKETRUSH_BIND_IP:-127.0.0.1}:${TICKETRUSH_HTTP_PORT:-8082}:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      api:
+        condition: service_healthy

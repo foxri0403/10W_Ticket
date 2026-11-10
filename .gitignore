@@ -1,0 +1,30 @@
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local database
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+database/
+backups/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs
+*.log
+
+# System
+.DS_Store
+Thumbs.db

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TicketRush | 콘서트 티켓 예매</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="/">TICKET<span>RUSH</span></a>
+      <button class="nav-link" id="myBookings">내 예매 확인</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="eyebrow">YOUR NEXT LIVE EXPERIENCE</div>
+        <h1>가장 설레는 순간,<br><span>티켓팅의 시작</span></h1>
+        <p>좋아하는 공연을 발견하고 원하는 좌석을 예약하세요.</p>
+        <a href="#events" class="primary-button">공연 둘러보기 →</a>
+      </div>
+    </section>
+
+    <section class="container section" id="events">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">UPCOMING EVENTS</div>
+          <h2>다가오는 공연</h2>
+        </div>
+        <p>지금 예매할 수 있는 공연을 확인하세요.</p>
+      </div>
+      <div class="event-grid" id="eventGrid">
+        <p>공연 정보를 불러오는 중...</p>
+      </div>
+    </section>
+
+    <section class="container section hidden" id="bookingSection">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">SELECT YOUR SEAT</div>
+          <h2 id="bookingTitle">좌석 선택</h2>
+        </div>
+        <button class="outline-button" id="refreshSeats">좌석 새로고침</button>
+      </div>
+
+      <div class="booking-layout">
+        <div class="seat-panel">
+          <div class="stage">STAGE</div>
+          <div class="seat-grid" id="seatGrid"></div>
+          <div class="legend">
+            <span>⬜ 선택 가능</span>
+            <span>🟣 선택 중</span>
+            <span>⬛ 예약 완료</span>
+          </div>
+        </div>
+
+        <div class="summary-panel">
+          <h3>예매 정보</h3>
+          <div class="summary-line">
+            <span>공연</span><strong id="summaryEvent">-</strong>
+          </div>
+          <div class="summary-line">
+            <span>좌석</span><strong id="summarySeat">미선택</strong>
+          </div>
+          <div class="summary-line">
+            <span>가격</span><strong id="summaryPrice">0원</strong>
+          </div>
+
+          <label for="nickname">예매자 닉네임</label>
+          <input id="nickname" maxlength="30"
+                 placeholder="닉네임을 입력하세요">
+
+          <button class="primary-button full" id="reserveButton">
+            선택한 좌석 예매하기
+          </button>
+          <p class="helper">결제 없이 진행하는 과제용 모의 예매입니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section hidden" id="reservationSection">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">MY TICKET</div>
+          <h2>내 예매 확인</h2>
+        </div>
+      </div>
+      <div class="lookup-panel">
+        <label for="reservationCode">예약 번호</label>
+        <input id="reservationCode" placeholder="예약 번호 입력">
+        <button class="primary-button" id="lookupButton">예매 조회</button>
+        <div id="reservationDetails"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>TICKETRUSH</strong>
+      <p>AWS 기반 선착순 공연 예매 서비스 · 교육용 프로젝트</p>
+    </div>
+  </footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
