@@ -53,5 +53,6 @@ Nginx :80
                          SQLite DB
 
 ## 5. 실행 및 배포
-GitHub 저장소에서 TicketRush 프로젝트 다운로드
-docker compose up -d --build로 전체 서비스 빌드 및 실행
+git clone https://github.com/foxri0403/10W_Ticket.git
+cd 10W_Ticket
+docker compose up -d --build
